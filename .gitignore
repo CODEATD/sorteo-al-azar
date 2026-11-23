@@ -5,3 +5,6 @@ dist-ssr
 .env
 .env.*
 .DS_Store
+
+# Build packages
+*.zip
