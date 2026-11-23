@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --rosa-fucsia:  #FF087E;
+  --rosa-magenta: #E20057;
+  --rosa-coral:   #FF4A8B;
+  --rosa-blush:   #FF97C1;
+  --rosa-petal:   #FFE3EE;
+  --rosa-cream:   #FFF6F9;
+  --rosa-wine:    #5C0A2E;
+  --rosa-night:   #1C0512;
+  --rosa-ink:     #3A0D22;
+  --rosa-gradient: linear-gradient(135deg, #FF087E 0%, #E20057 55%, #B80047 100%);
+}
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: Mont, 'Outfit', sans-serif;
+    background: var(--rosa-cream);
+    color: var(--rosa-ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  #root { min-height: 100vh; }
+}
+
+@layer utilities {
+  .font-display { font-family: Mont, 'Outfit', sans-serif; }
+
+  .gradient-text {
+    background: linear-gradient(120deg, var(--rosa-fucsia) 0%, var(--rosa-magenta) 60%, var(--rosa-wine) 120%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .gradient-text-light {
+    background: linear-gradient(120deg, #FFFFFF 0%, var(--rosa-blush) 55%, var(--rosa-fucsia) 110%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-rosa-gradient { background: var(--rosa-gradient); }
+
+  .card-white {
+    background: #FFFFFF;
+    border: 1px solid rgba(226,0,87,0.10);
+    border-radius: 20px;
+    box-shadow: 0 16px 44px rgba(226,0,87,0.08);
+  }
+
+  .card-cream {
+    background: var(--rosa-petal);
+    border: 1px solid rgba(226,0,87,0.14);
+    border-radius: 20px;
+  }
+
+  .card-glass {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,151,193,0.22);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+  }
+
+  .rosa-input {
+    background: #ffffff;
+    border: 1.8px solid rgba(226,0,87,0.16);
+    border-radius: 14px;
+    color: var(--rosa-ink);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .rosa-input:focus {
+    outline: none;
+    border-color: var(--rosa-fucsia);
+    box-shadow: 0 0 0 3px rgba(255,8,126,0.14);
+  }
+  .rosa-input::placeholder { color: rgba(58,13,34,0.30); }
+
+  /* Fondo claro: rubor rosa suave con los arcos de la identidad */
+  .blush-bg {
+    background-color: var(--rosa-cream);
+    background-image:
+      radial-gradient(circle at 8% 10%,  rgba(255,8,126,0.10) 0%, transparent 40%),
+      radial-gradient(circle at 92% 20%, rgba(255,151,193,0.28) 0%, transparent 38%),
+      radial-gradient(circle at 15% 88%, rgba(255,151,193,0.22) 0%, transparent 40%),
+      radial-gradient(circle at 85% 92%, rgba(226,0,87,0.08) 0%, transparent 40%);
+  }
+
+  /* Fondo de escenario: pasarela con luces magenta */
+  .stage-bg {
+    background-color: var(--rosa-night);
+    background-image:
+      radial-gradient(ellipse 70% 45% at 50% 0%,   rgba(255,8,126,0.38) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 50% 100%, rgba(226,0,87,0.32) 0%, transparent 70%),
+      radial-gradient(circle at 10% 60%, rgba(140,20,160,0.25) 0%, transparent 40%),
+      radial-gradient(circle at 90% 55%, rgba(140,20,160,0.22) 0%, transparent 40%);
+  }
+
+  .glow-rosa   { box-shadow: 0 12px 32px rgba(255,8,126,0.32), 0 4px 12px rgba(226,0,87,0.20); }
+
+  .scrollbar-hide { scrollbar-width: none; -ms-overflow-style: none; }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+}
+
+/* Arcos decorativos (como en las piezas de la identidad) */
+.arc {
+  position: absolute;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: var(--rosa-magenta);
+  pointer-events: none;
+}
+
+/* Haces de luz de escenario */
+.beam {
+  position: absolute;
+  top: -10%;
+  width: 34vw;
+  height: 120%;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255,151,193,0.28) 0%, rgba(255,8,126,0.08) 55%, transparent 85%);
+  clip-path: polygon(46% 0, 54% 0, 100% 100%, 0 100%);
+  filter: blur(6px);
+  mix-blend-mode: screen;
+}
+
+@keyframes winner-reveal {
+  0%   { transform: translateY(32px) scale(0.86); opacity: 0; }
+  70%  { transform: translateY(-5px) scale(1.03); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+.winner-reveal { animation: winner-reveal 0.55s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(72px);
+  pointer-events: none;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+.float { animation: float 3.5s ease-in-out infinite; }
